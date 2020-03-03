@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const secrets = require('../secrets.js');
 const Users = require('../users/users-model.js');
-const authenticate = require('./auth-middleware');
+
 
 const router = express.Router();
 
