@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const secrets = require('../secrets.js');
 const Users = require('../users/users-model.js');
+const authenticate = require('./auth-middleware');
 
 const router = express.Router();
 
@@ -26,6 +27,32 @@ router.post('/register', (req, res) => {
         res.status(400).json({message: 'Must provide username and password: authrouter.js: api/register: else: catch'});
     }
 });
+
+//post api/login
+router.post('/login', (req, res) => {
+    const { username, password } = req.body;
+
+    if(username && password) {
+        Users.getByUsername(username)
+            .then(user => {
+                if(user && bcrypt.compareSync(password, user.password)) {
+                    const token = generateToken(user);
+                    res.status(200).json({
+                        user,
+                        token
+                    });
+                } else {
+                    res.status(401).json({message: 'invalid username or password'});
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({error: 'Could not log in'});
+            });
+    } else {
+        res.status(400).json({message: 'Must provide username and password'});
+    }
+})
 
 // generate token 
 function generateToken(user) {
