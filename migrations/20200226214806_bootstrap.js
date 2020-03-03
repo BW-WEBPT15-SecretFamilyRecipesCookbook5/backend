@@ -35,6 +35,9 @@ exports.up = function(knex) {
         tbl.increments('id')
             .notNullable()
             .unique();
+        tbl.string('category_name', 32)
+            .notNullable()
+            .unique()
     })
 };
 
