@@ -16,8 +16,10 @@ exports.up = function(knex) {
             recipes.string('instructions');
             recipes.string('directions');
             recipes.string('description');
-            recipes.string('user_id');
+            recipes.string('user_id');P
             recipes.string('notes');
+
+            recipes.primary(['recipe_id', 'user_id'])
         })
 };
 
