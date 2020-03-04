@@ -9,8 +9,7 @@ const db = require('../../data/dbConfig.js');
 //         .unique();
 //     recipes.string('recipe_image_src');
 //     recipes.string('author', 32);
-//     recipes.string('category_id')
-//         .notNullable();
+//   
 //     
 //     recipes.string('directions');
 //     recipes.string('description');
@@ -28,8 +27,30 @@ module.exports = {
 };
 
 function findByUser(user_id) {
-    return db('recipes')
-        // 
+    return db('recipe')
+    .select(
+        'recipes.id',
+        'recipes.title',
+        'recipes.recipe_image_source',
+        'category.category_id',
+        'recipes.ingredients',
+        'recipes.directions',
+        'recipes.description',
+        'recipes.user_id',
+        'recipes.notes'
+    )
+    .join('category', 'category.id', 'recipes.category_id')
+    .join(
+        'recipe_ingredients', 
+        'recipes.id', 
+        'recipe_ingredients.recipe_id', 
+    )
+    .join(
+        'ingredients',
+        'ingredients.id',
+        'recipe_ingredients.ingredient_id',
+    )
+    .where({user_id: user_id})
 };
 
 function findById(id) {
