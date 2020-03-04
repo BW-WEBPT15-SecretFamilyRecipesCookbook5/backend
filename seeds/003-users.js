@@ -6,27 +6,18 @@ exports.seed = function(knex) {
       return knex('users').insert([
         {
           id: '1',
-          username: 'Mom',
-          password: '123',
-          "first-name":"Lily",
-          "last-name":"Potter",
-          "email":"always@neverWithSnape.com"
+          username: 'Harry',
+          password: '123'
         },
         {
           id: '2',
-          username: 'GrandmaLucy',
-          password: '123',
-          "first-name":"Lucille",
-          "last-name":"Ball",
-          "email":"but@Ricky.com"
+          username: 'Hermione',
+          password: '123'
         },
         {
           id: '3',
-          username: 'AuntieEdna',
-          password: '123',
-          "first-name":"Edna",
-          "last-name":"Mole",
-          "email":"Edna@iMakeSuperSuits.super"
+          username: 'Ron',
+          password: '123'
         }
       ]);
     });
