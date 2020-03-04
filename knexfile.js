@@ -7,7 +7,11 @@ module.exports = {
     useNullAsDefault: true,
     connection: {
       filename: './data/recipes.db3'
-    }
+    },
+    production:{
+      client: 'pg',
+      connection: process.env.DATABASE_URL,
+      }
   },
   pool: {
     afterCreate: (conn, done) => {

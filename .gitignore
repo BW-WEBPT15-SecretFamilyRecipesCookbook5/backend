@@ -1,4 +1,8 @@
-node_modules
+/node_modules
+
+#Necessary for Heroku deployment
+/*.env
+
 
 recipes.db3
 

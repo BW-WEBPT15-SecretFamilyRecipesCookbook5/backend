@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const secrets = require('../users/secrets.js');
+const secrets = require('../secrets.js');
 const Users = require('../users/users-model.js');
 
 

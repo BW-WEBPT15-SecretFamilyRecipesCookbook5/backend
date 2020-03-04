@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Repo for the backend developers.",
+  "description": "Repo for the backend developer of Secret Family Recipes.",
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
@@ -31,5 +31,8 @@
     "nodemon": "^2.0.2",
     "pg": "^7.18.2",
     "sqlite3": "^4.1.1"
+  },
+  "engines": {
+    "node": "10.16.3"
   }
 }
