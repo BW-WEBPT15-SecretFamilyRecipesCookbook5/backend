@@ -1,21 +1,5 @@
 const db = require('../../data/dbConfig.js');
 
-// .createTable('recipes', recipes => {
-//     recipes.increments('id')
-//         .notNullable()
-//         .unique();
-//     recipes.string('title', 32)
-//         .notNullable()
-//         .unique();
-//     recipes.string('recipe_image_src');
-//     recipes.string('author', 32);
-//   
-//     
-//     recipes.string('directions');
-//     recipes.string('description');
-//     recipes.string('user_id');
-//     recipes.string('notes');
-// })
 module.exports = {
     add,
     edit,
@@ -27,30 +11,29 @@ module.exports = {
 };
 
 function findByUser(user_id) {
-    return db('recipe')
-    .select(
-        'recipes.id',
-        'recipes.title',
-        'recipes.recipe_image_source',
-        'category.category_id',
-        'recipes.ingredients',
-        'recipes.directions',
-        'recipes.description',
-        'recipes.user_id',
-        'recipes.notes'
-    )
-    .join('category', 'category.id', 'recipes.category_id')
-    .join(
-        'recipe_ingredients', 
-        'recipes.id', 
-        'recipe_ingredients.recipe_id', 
-    )
-    .join(
-        'ingredients',
-        'ingredients.id',
-        'recipe_ingredients.ingredient_id',
-    )
-    .where({user_id: user_id})
+    return db('recipes')
+        .select(
+            'recipes.id',
+            'recipes.title',
+            'recipes.img_source',
+            'category.category_name',
+            'ingredients.name',
+            'recipe_ingredients.measurement',
+            'recipes.directions',
+            'recipes.user_id'
+        )
+        .join('category', 'category.id', 'recipes.category_id')
+        .join(
+            'recipe_ingredients', 
+            'recipes.id', 
+            'recipe_ingredients.recipe_id', 
+        )
+        .join(
+            'ingredients',
+            'ingredients.id',
+            'recipe_ingredients.ingredient_id',
+        )
+        .where({user_id: user_id})
 };
 
 function findById(id) {
@@ -58,39 +41,46 @@ function findById(id) {
         .select([
             'recipes.id',
             'recipes.title',
-            'recipes.source',
+            'recipes.image_source',
             'category.category_name',
             'ingredients.name as ingredient_name',
             'recipe_ingredients.measurement',
-            'recipes.instructions',
+            'recipes.directions',
             'recipes.user_id'
         ])
         .join('category', 'category.id', 'recipes.category_id')
-
+        .join(
+            'recipe_ingredients', 
+            'recipes.id', 
+            'recipe_ingredients.recipe_id', 
+        )
+        .join(
+            'ingredients',
+            'ingredients.id',
+            'recipe_ingredients.ingredient_id',
+        )
         .where({'recipes.id': id})
         .first();
 };
 
 function add(recipe) {
     return db('recipes')
-        
         .insert(recipe)
         .then(([id]) => {
             console.log(id)
-            return findById(id);
+            return findById(id)
         });
 };
 
 function edit(id, recipe) {
     return db('recipes')
-        
         .where({id})
         .update(recipe)
         .then(([id]) => {
             console.log(id)
             return findById(id);
         });
-
+        
 };
 
 function remove(id) {
