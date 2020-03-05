@@ -6,6 +6,7 @@ module.exports = {
     remove,
     findById, 
     findByUser
+    //***THESE ARE IDEAS FOR FUTURE RELEASE */
     //findCategory,
     //addIngredients,
 };
@@ -22,7 +23,10 @@ function findByUser(user_id) {
             'recipes.directions',
             'recipes.user_id'
         )
-        .join('category', 'category.id', 'recipes.category_id')
+        .join(
+            'category', 
+            'category.id', 
+            'recipes.category_id')
         .join(
             'recipe_ingredients', 
             'recipes.id', 
@@ -33,7 +37,9 @@ function findByUser(user_id) {
             'ingredients.id',
             'recipe_ingredients.ingredient_id',
         )
-        .where({user_id: user_id})
+        .where({
+            user_id: user_id
+        })
 };
 
 function findById(id) {
@@ -48,7 +54,11 @@ function findById(id) {
             'recipes.directions',
             'recipes.user_id'
         ])
-        .join('category', 'category.id', 'recipes.category_id')
+        .join(
+            'category', 
+            'category.id', 
+            'recipes.category_id'
+            )
         .join(
             'recipe_ingredients', 
             'recipes.id', 
@@ -59,7 +69,9 @@ function findById(id) {
             'ingredients.id',
             'recipe_ingredients.ingredient_id',
         )
-        .where({'recipes.id': id})
+        .where({
+            'recipes.id': id
+        })
         .first();
 };
 
@@ -67,8 +79,8 @@ function add(recipe) {
     return db('recipes')
         .insert(recipe)
         .then(([id]) => {
-            console.log(id)
-            return findById(id)
+            console.log(id);
+            return findById(id);
         });
 };
 
@@ -77,7 +89,7 @@ function edit(id, recipe) {
         .where({id})
         .update(recipe)
         .then(([id]) => {
-            console.log(id)
+            console.log(id);
             return findById(id);
         });
         
