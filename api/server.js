@@ -16,18 +16,18 @@ server.use(helmet());
 // server.use(cors());
 
 
-const whiteList = [
-    "http://localhost:3000",
-    "http://localhost:3003",
-    "https://secret-familyrecipes.netlify.com/"
-];
+// const whiteList = [
+//     "http://localhost:3000",
+//     "http://localhost:3003",
+//     "https://secret-familyrecipes.netlify.com/"
+// ];
 
-const corsOptions = {
-    credentials: true,
-    origin: 'http://localhost:3000'
-};
+// const corsOptions = {
+//     credentials: true,
+//     origin: 'http://localhost:3000'
+// };
 
-server.use(cors(corsOptions));
+server.use(cors());
 
 
 server.use('/api/auth', authRouter);

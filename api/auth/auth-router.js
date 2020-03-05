@@ -22,7 +22,7 @@ router.post('/register', (req, res) => {
             })
             .catch(err => {
                 console.log(err);
-                res.status(500).json({error: 'Could not register user: auth-router.js: api/register: if: catch'});
+                res.status(502).json({error: 'Could not register user: auth-router.js: api/register: if: catch'});
             });
     } else {
         res.status(400).json({message: 'Must provide username and password: authrouter.js: api/register: else: catch'});

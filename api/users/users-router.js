@@ -4,6 +4,7 @@ const authenticate = require('../auth/auth-middleware.js');
 
 const router = express.Router();
 
+
 router.get('/:id', authenticate, (req, res) => {
     const { id } = req.params;
 
