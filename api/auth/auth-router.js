@@ -8,6 +8,19 @@ const Users = require('../users/users-model.js');
 
 const router = express.Router();
 
+// generate token 
+function generateToken(user) {
+    const payload = {
+    //   subject: user.password,
+      username: user.username
+    };
+    const options = {
+        expiresIn: '1d'
+    };
+    return jwt.sign(payload, secrets.jwtSecret, options);
+  }
+module.exports = router;
+
 // Post api/auth/register
 router.post('/register', (req, res) => {
     const { username, password } = req.body;
@@ -16,7 +29,7 @@ router.post('/register', (req, res) => {
     if(username && password) {
         Users.insert({username, password: hash})
             .then(user => {
-                token = generateToken(user);
+                const token = generateToken(user);
                 res.status(201).json({user, token})
             })
             .catch(err => {
@@ -53,15 +66,15 @@ router.post('/login', (req, res) => {
     }
 })
 
-// generate token 
-function generateToken(user) {
-    const payload = {
-      subject: user.password,
-      username: user.username
-    };
-    const options = {
-        expiresIn: '1d'
-    };
-    return jwt.sign(payload, secrets.jwtSecret, options);
-  }
-module.exports = router;
+// // generate token 
+// function generateToken(user) {
+//     const payload = {
+//     //   subject: user.password,
+//       username: user.username
+//     };
+//     const options = {
+//         expiresIn: '1d'
+//     };
+//     return jwt.sign(payload, secrets.jwtSecret, options);
+//   }
+// module.exports = router;
