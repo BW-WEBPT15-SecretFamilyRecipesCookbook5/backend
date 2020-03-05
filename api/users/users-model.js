@@ -15,7 +15,7 @@ const getByUsername = (username) => {
 const insert = (user) => {
     return db('users')
         .insert(user)
-        .then(( [id] ) => this.getById(id));
+        .then(( [id] ) => getById(id));
 }
 
 module.exports = {
