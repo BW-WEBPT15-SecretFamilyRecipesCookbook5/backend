@@ -8,7 +8,7 @@ const Users = require('../users/users-model.js');
 
 const router = express.Router();
 
-// Post api/register
+// Post api/auth/register
 router.post('/register', (req, res) => {
     const { username, password } = req.body;
     const hash = bcrypt.hashSync(password, 8);
