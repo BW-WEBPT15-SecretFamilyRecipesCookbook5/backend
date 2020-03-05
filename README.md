@@ -9,9 +9,9 @@ This back end was build in production using sqlite3. It is deployed through Hero
 
 EndPoints
 
-**POST /api/auth/register
+- POST /api/auth/register
 
-    - Used to Add/Register New User
+    * Used to Add/Register New User
 
 Body (Accepts) :
     { 
@@ -28,9 +28,9 @@ Returns (User Object and Token) :
          }
 
 
-**POST /api/auth/login
+- POST /api/auth/login
 
-    -Used to login User
+    *Used to login User
 
 Body (Accepts): 
     {
@@ -47,9 +47,9 @@ Returns (User Object and Token):
     }
     
     
-**GET /api/users/:user_id/recipes
+- GET /api/users/:user_id/recipes
 
-    -Get all recipes belonging to user
+    *Get all recipes belonging to user
 
 Body (Accepts) :
     {
@@ -70,9 +70,9 @@ Returns (Array of Recipe Objects):
    } ]
 
 
-**GET /api/users/recipes/:id
+- GET /api/users/recipes/:id
 
-    - Get one recipe with specified id
+   * Get one recipe with specified id
 
 Body (Accepts):  
     {
@@ -91,26 +91,51 @@ Returns (One Recipe Object):
    }
 
 
-**POST /api/users/:user_id/recipes
+- POST /api/users/:user_id/recipes
 
-    - Add new recipe to specified user
+   * Add new recipe to specified user
 
 Body (Accepts) 
     {
         "user_id": "User's ID" 
     }
-Return 
+Returns (New Recipe Object): 
     { 
-        "title": "Corn Bread",  
-        "img-source": "https://sampleURL.com", 
+        "id": 5,    
+        "title": "Corn Bread", 
+        "img_source": "https://sampledata.com", 
+        "instructions": "Mix ingredients in a large bowl, greese pan, turn oven to 350, poor mixture into pan, keep in oven for 30mins",
+        "user_id": "2", 
         "category": "Side Dish", 
-        "ingredients": "1cup cornmeal, 1/4cup milk, 1 large egg, 1/2cup sugar, 1stick butter", 
-        "instructions": "Mix ingredients in a large bowl, greese pan, turn oven to 350, poor mixture into pan, keep in oven for 30mins" }
-Returns (New Recipe Object) { "id": 5, "title": "Corn Bread", "img_source": "https://sampledata.com", "instructions": "Mix ingredients in a large bowl, greese pan, turn oven to 350, poor mixture into pan, keep in oven for 30mins", "user_id": "2", "category": "Side Dish", "ingredients": "1cup cornmeal, 1/4cup milk, 1 large egg, 1/2cup sugar, 1stick butter" }
-DELETE /api/users/recipes/:id
-Delete recipe of specified id
-Accepts id: Recipe's ID
-PUT /api/users/recipes/:id
-Edit recipe of specified id
-Accepts id: Recipe's ID Body { "title": "Sweet Corn Bread", "image-source": "http://sampleUrl.com", "category": "Side Dish", "ingredients": "1cup cornmeal, 1/4cup milk, 1 large egg, 1/2cup sugar, 1stick butter", "instructions": "Mix ingredients in a large bowl, greese pan, turn oven to 350, poor mixture into pan, keep in oven for 30mins" }
-Returns (Updated Recipe Object) { "id": 5, "title": "Sweet Corn Bread", "img_source": "https://thisImage.com", "instructions": "Mix ingredients in a large bowl, greese pan, turn oven to 350, poor mixture into pan, keep in oven for 30mins", "user_id": "2", "category": "Side Dish", "ingredients": "1cup cornmeal, 1/4cup milk, 1 large egg, 1/2cup sugar, 1stick butter" }
+        "ingredients": "1cup cornmeal, 1/4cup milk, 1 large egg, 1/2cup sugar, 1stick butter" 
+    }
+    
+    
+- DELETE /api/users/recipes/:id
+    
+    *Delete recipe of specified id
+
+Body(Accepts): 
+    {
+        "id": "Recipe's ID"
+    }
+    
+
+- PUT /api/users/recipes/:id
+
+    * Edit recipe of specified id
+
+Body(Accepts):
+    {
+        "id": "Recipe's ID" 
+    }
+Returns (Updated Recipe Object):  
+    {
+        "id": 5, 
+        "title": "Sweet Corn Bread", 
+        "img_source": "https://thisImage.com", 
+        "instructions": "Mix ingredients in a large bowl, greese pan, turn oven to 350, poor mixture into pan, keep in oven for 30mins",
+        "user_id": "2", 
+        "category": "Side Dish", 
+        "ingredients": "1cup cornmeal, 1/4cup milk, 1 large egg, 1/2cup sugar, 1stick butter" 
+    }
