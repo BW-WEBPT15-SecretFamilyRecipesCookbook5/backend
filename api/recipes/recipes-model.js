@@ -11,6 +11,8 @@ module.exports = {
     //addIngredients,
 };
 
+
+//find any user by the user_id (foreign key to primary key of users table?)
 function findByUser(user_id) {
     return db('recipes')
         .select(
@@ -42,6 +44,7 @@ function findByUser(user_id) {
         })
 };
 
+//find any recipe by id (primary id)
 function findById(id) {
     return db('recipes')
         .select([
@@ -49,8 +52,7 @@ function findById(id) {
             'recipes.title',
             'recipes.image_source',
             'category.category_name',
-            'ingredients.name as ingredient_name',
-            'recipe_ingredients.measurement',
+            'recipes.ingredients as ingredient_name',
             'recipes.directions',
             'recipes.user_id'
         ])
