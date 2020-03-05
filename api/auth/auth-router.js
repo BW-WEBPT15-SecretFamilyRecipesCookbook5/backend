@@ -10,8 +10,9 @@ const router = express.Router();
 
 // Post api/auth/register
 router.post('/register', (req, res) => {
-    const { username, password } = req.body;
-    const hash = bcrypt.hashSync(password, 8);
+    const { credentials } = req.body;
+    const hash = bcrypt.hashSync(credentials.password, 8);
+    credentials.password = hash;
 
     if(username && password) {
         Users.insert({username, password: hash})
