@@ -10,18 +10,16 @@ const router = express.Router();
 
 // Post api/auth/register
 router.post('/register', (req, res) => {
-    const { credentials } = req.body;
-    const hash = bcrypt.hashSync(credentials.password, 8);
-    credentials.password = hash;
+    const { username, password } = req.body;
+    const hash = bcrypt.hashSync(password, 8);
 
     if(username && password) {
         Users.insert({username, password: hash})
-            .then(user =>{
+            .then(user => {
                 token = generateToken(user);
                 res.status(201).json({user, token})
             })
             .catch(err => {
-                console.log(err);
                 res.status(502).json({error: 'Could not register user: auth-router.js: api/register: if: catch'});
             });
     } else {
@@ -58,7 +56,7 @@ router.post('/login', (req, res) => {
 // generate token 
 function generateToken(user) {
     const payload = {
-      subject: user.id,
+      subject: user.password,
       username: user.username
     };
     const options = {
