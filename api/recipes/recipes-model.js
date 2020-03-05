@@ -20,8 +20,7 @@ function findByUser(user_id) {
             'recipes.title',
             'recipes.img_source',
             'category.category_name',
-            'ingredients.name',
-            'recipe_ingredients.measurement',
+            'recipes.ingredients as recipe_ingredients',
             'recipes.directions',
             'recipes.user_id'
         )
@@ -33,11 +32,6 @@ function findByUser(user_id) {
             'recipe_ingredients', 
             'recipes.id', 
             'recipe_ingredients.recipe_id', 
-        )
-        .join(
-            'ingredients',
-            'ingredients.id',
-            'recipe_ingredients.ingredient_id',
         )
         .where({
             user_id: user_id
@@ -65,11 +59,6 @@ function findById(id) {
             'recipe_ingredients', 
             'recipes.id', 
             'recipe_ingredients.recipe_id', 
-        )
-        .join(
-            'ingredients',
-            'ingredients.id',
-            'recipe_ingredients.ingredient_id',
         )
         .where({
             'recipes.id': id
