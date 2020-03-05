@@ -13,7 +13,7 @@ const server = express();
 
 server.use(express.json());
 server.use(helmet());
-server.use(cors());
+// server.use(cors());
 
 const whiteList = [
     "http://localhost:3000",
