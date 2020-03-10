@@ -12,6 +12,7 @@ EndPoints
 - POST /api/auth/register
 
     * Used to Add/Register New User
+**SAMPLE DATA FOR DATA SHAPE ONLY **
 
 Body (Accepts) :
     { 
@@ -23,7 +24,7 @@ Returns (User Object and Token) :
         "user": { 
             "id": 5, 
             "username": "testuser2", 
-            "password": "$2a$08$eJOjmSlaD61/Z73DHwCm4ezos9jWv41nq.IMuq7l8phc3VVHymDd6" }, 
+            "password": "$2a$08$eJO456jmSlaD61/Z73DHwCm4ezos9jWv41nq.IMuq7l8phc3VVHymDd6" }, 
             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJ" 
          }
 
@@ -42,7 +43,7 @@ Returns (User Object and Token):
         "user": { 
             "id": 4, 
             "username": "testuser", 
-            "password": "$2a$08$LSDk50SsYmUJ2bh49fSUG./LPrLY7tW9w/YH9QS9FfmYDTg7.1J02" 
+            "password": "$2a$08$LSDk50SsYmUJ5672bh49fSUG./LPrLY7tW9w/YH9QS9FfmYDTg7.1J02" 
          }, "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJ" 
     }
     
