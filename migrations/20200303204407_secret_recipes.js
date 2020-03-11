@@ -20,9 +20,7 @@ exports.up = function(knex) {
           tbl.string('user_id').notNullable();
           tbl.string('category');
           tbl.string('ingredients')
-          tbl
-            .onUpdate('CASCADE')
-            .onDelete('CASCADE');
+    
       });
       
   };
