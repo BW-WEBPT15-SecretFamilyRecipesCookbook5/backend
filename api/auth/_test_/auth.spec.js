@@ -5,6 +5,13 @@ let token;
 
 beforeAll(async () => {
   await db.raw('truncate users cascade');
+  const user = {
+    username: 'katniss',
+    password: 'everdean',
+  }
+  return request(server)
+  .post('/api/auth/register')
+  .send(user);
 });
 
 describe('register', () => {
@@ -77,21 +84,7 @@ describe('login', () => {
   });
 });
 
-const server = require('../../server');
-const db = require('../../database/dbConfig');
-const request = require('supertest');
-let token;
-
-beforeAll(async () => {
-    const user = {
-      username: 'katniss',
-      password: 'everdean',
-  };
-
-  return request(server)
-    .post('/api/auth/register')
-    .send(user);
-});
+ 
 
 describe('Recipes', () => {
   beforeAll(async () => {
@@ -121,4 +114,4 @@ describe('Recipes', () => {
         });
     });
   });
-module.export = token;
+module.export = token
