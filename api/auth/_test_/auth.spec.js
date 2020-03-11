@@ -113,5 +113,6 @@ describe('Recipes', () => {
           expect(res.status).toEqual(404);
         });
     });
-  });
+  })
+});
 module.export = token
