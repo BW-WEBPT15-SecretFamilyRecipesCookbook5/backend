@@ -6,13 +6,23 @@
   "scripts": {
     "server": "nodemon index.js",
     "start": "node index.js",
-    "test": "cross-env DB_ENV=testing jest --watch"
+    "rollback-test": "npx knex migrate:rollback --env=testing",
+    "migrate-test": "npx knex migrate:latest --env=testing",
+    "seed-test": "npx knex seed:run --env=testing",
+    "pretest": "npm run rollback-test && npm run migrate-test && npm run seed-test",
+    "test": "cross-env DB_ENV=testing jest --verbose --forceExit"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "engines": {
+    "node": "10.16.3"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BW-WEBPT15-SecretFamilyRecipesCookbook5/backend.git"
   },
-  "author": "",
+  "author": "Christine Carpenter",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/BW-WEBPT15-SecretFamilyRecipesCookbook5/backend/issues"
@@ -26,10 +36,13 @@
     "express": "^4.17.1",
     "express-validator": "^6.4.0",
     "helmet": "^3.21.3",
+    "jest": "^25.1.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.10",
+    "knex-cleaner": "^1.3.0",
     "nodemon": "^2.0.2",
     "pg": "^7.18.2",
-    "sqlite3": "^4.1.1"
+    "sqlite3": "^4.1.1",
+    "supertest": "^4.0.2"
   }
 }

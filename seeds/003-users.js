@@ -7,17 +7,17 @@ exports.seed = function(knex) {
         {
           id: '1',
           username: 'Harry',
-          password: '123'
+          password: bcrypt.hashSync('1234', 10)
         },
         {
           id: '2',
           username: 'Hermione',
-          password: '123'
+          password: bcrypt.hashSync('1234', 10)
         },
         {
           id: '3',
           username: 'Ron',
-          password: '123'
+          password: bcrypt.hashSync('1234', 10)
         }
       ]);
     });
